@@ -2,14 +2,18 @@
             
                 <div class="left-wrapper">
                     <h1>Your Projects</h1>
+                    <h2><?= esc($_SESSION['user']['login']) ?></h2>
+                    <a href="./logout.php">exit</a>
                     <ul class="project-list">
-                        <li class="project"><a class="project-name" href="#">Project</a></li>
-                        <li class="project"><a class="project-name" href="#">Project</a></li>
-                        <li class="project"><a class="project-name" href="#">Project</a></li>
-                        <li class="project"><a class="project-name" href="#">Project</a></li>
-                        <li class="project"><a class="project-name" href="#">Project</a></li>
+
+                        <?php foreach ($projects ?? [] as $project): ?>
+                            <li class="project">
+                                <a class="project-name" href="#"><?= esc($project['name']) ?></a>
+                            </li>
+                        <?php endforeach; ?>
+
                     </ul>
-                    <a class="new-project" href="#">+</a>
+                    <a class="new-project" href="create-project.php">+</a>
                 </div>
 
             <div class="right-wrapper">
@@ -54,50 +58,32 @@
                 </div>
 
                 <div class="tasks-list">
-                    <div class="task">
-                        <div class="left-task-wrapper">
-                            <div class="status"></div>
-                        </div>
-                        <div class="right-task-wrapper">
-                            <div class="task-name">
-                                <p>Задание 1</p>
+                    <?php foreach ($tasks ?? [] as $task): ?>
+                        <div class="task">
+                            <div class="left-task-wrapper">
+                                <div class="status"></div>
                             </div>
-                            <div class="task-data-file">
-                                 <a href="#">
-                                    <svg class="download" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-                                        <g id="Icons">
-                                            <path d="m43 32v6a5 5 0 0 1 -5 5h-26a5 5 0 0 1 -5-5v-6h-2v6a7 7 0 0 0 7 7h26a7 7 0 0 0 7-7v-6z"></path>
-                                            <path d="m25 39a1 1 0 0 0 .71-.29l12-12-1.42-1.42-10.29 10.3v-30.59h-2v30.59l-10.29-10.3-1.42 1.42 12 12a1 1 0 0 0 .71.29z"></path>
-                                        </g>
-                                    </svg>
-                                </a>
-                                <p>До: 11.11.11</p>
+                            <div class="right-task-wrapper">
+                                <div class="task-name">
+                                    <p><?= $task['name'] ?></p>
+                                </div>
+                                <div class="task-data-file">
+                                    <a href="#">
+                                        <svg class="download" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="Icons">
+                                                <path d="m43 32v6a5 5 0 0 1 -5 5h-26a5 5 0 0 1 -5-5v-6h-2v6a7 7 0 0 0 7 7h26a7 7 0 0 0 7-7v-6z"></path>
+                                                <path d="m25 39a1 1 0 0 0 .71-.29l12-12-1.42-1.42-10.29 10.3v-30.59h-2v30.59l-10.29-10.3-1.42 1.42 12 12a1 1 0 0 0 .71.29z"></path>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                    <p><?= $task['dt_create'] ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
 
-                    <div class="task">
-                        <div class="left-task-wrapper">
-                            <div class="status"></div>
-                        </div>
-                        <div class="right-task-wrapper">
-                            <div class="task-name">
-                                <p>Задание 1</p>
-                            </div>
-                            <div class="task-data-file">
-                                 <a href="#">
-                                    <svg class="download" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-                                        <g id="Icons">
-                                            <path d="m43 32v6a5 5 0 0 1 -5 5h-26a5 5 0 0 1 -5-5v-6h-2v6a7 7 0 0 0 7 7h26a7 7 0 0 0 7-7v-6z"></path>
-                                            <path d="m25 39a1 1 0 0 0 .71-.29l12-12-1.42-1.42-10.29 10.3v-30.59h-2v30.59l-10.29-10.3-1.42 1.42 12 12a1 1 0 0 0 .71.29z"></path>
-                                        </g>
-                                    </svg>
-                                </a>
-                                <p>До: 11.11.11</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
         </div>
+        
